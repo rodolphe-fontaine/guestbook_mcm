@@ -1,0 +1,21 @@
+apiVersion: app.ibm.com/v1alpha1
+kind: Subscription
+metadata:
+  name: guestbook-sub-backend
+  namespace: guestbook
+  labels:
+    app: guestbook
+spec:
+  channel: cha1/guestbook
+  overrides:
+    - clusterName: /
+      clusterOverrides:
+        - path: metadata.namespace
+          value: team2
+  packageFilter:
+    annotations:
+      tier: backend
+  placement:
+    placementRef:
+      name: guestbook-placement
+      kind: PlacementRule
