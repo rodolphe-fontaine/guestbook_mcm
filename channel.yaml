@@ -1,0 +1,8 @@
+apiVersion: app.ibm.com/v1alpha1
+kind: Channel
+metadata:
+  name: guestbook
+  namespace: cha1
+spec:
+  pathname: 'https://github.com/rodolphe-fontaine/guestook'
+  type: github
