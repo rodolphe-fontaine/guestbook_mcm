@@ -1,5 +1,8 @@
 # IBM Multicloud Manager Tutorial
 
+The concepts are explained in this document : https://cloudpak8s.io/mcm/cp4mcm_mcm_concepts/
+
+
 This is a tutorial which explains how to use MCM and how to :
 - deploy a simple application to a managed cluster
 - Modify some parameters in the fly
