@@ -76,6 +76,13 @@ Connect to the managed cluster and try to delete the network policy :
     oc delete from-backend-to-frontend -n team2
 Notice that it is impossible to delete it. MCM is monitoring your cluster and keep consistency regarding the governance you have configured in your hub. 
 
+### troubleshooting
+If you are using OCP, the front-end won't start
+# oc get pod <your pod name> -o yaml | grep -i serviceAccountName
+    serviceAccountName: default
+# oc adm policy add-scc-to-user anyuid -z default
+# oc delete pod <your pod name>
+
 
 
 
