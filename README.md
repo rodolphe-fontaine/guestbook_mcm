@@ -6,6 +6,8 @@ This is a tutorial which explains how to use MCM and how to :
 - deploy a simple policy by using the UI
 - deploy a policy with the command line. 
 
+NB : if you use RedHat Advanced Cluster Manager, you will need to modify the api versions in the yaml files. 
+
 
 
 ## The application
