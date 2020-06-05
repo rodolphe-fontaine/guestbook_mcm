@@ -44,7 +44,7 @@ The application has been a little bit complexified by placing the frontend and t
 Your subscription is created. It is github channel. All the yaml files are available to make the application works. 
 
 Let's have a look at the subscription-frontend.yaml file : 
-<img src="https://raw.githubusercontent.com/rodolphe-fontaine/guestbook_mcm/master/images/subscription.png" width="50%" height="75%"></img> 
+<BR><img src="https://raw.githubusercontent.com/rodolphe-fontaine/guestbook_mcm/master/images/subscription.png" width="50%" height="75%"></img> 
 
 Notice 2 things : 
 
