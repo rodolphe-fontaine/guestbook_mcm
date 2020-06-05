@@ -1,0 +1,36 @@
+apiVersion: policy.mcm.ibm.com/v1alpha1
+kind: Policy
+metadata:
+  name: policy-networkpolicy-gb
+  namespace: default
+  annotations:
+    policy.mcm.ibm.com/categories: ''
+    policy.mcm.ibm.com/controls: ''
+    policy.mcm.ibm.com/standards: ''
+spec:
+  complianceType: musthave
+  disabled: true
+  namespaces:
+    exclude:
+      - kube-*
+    include:
+      - team2
+  object-templates:
+    - complianceType: musthave
+      objectDefinition:
+        apiVersion: networking.k8s.io/v1
+        kind: NetworkPolicy
+        metadata:
+          name: from-backend-to-frontend
+        spec:
+          ingress:
+            - from:
+                - podSelector:
+                    matchLabels:
+                      tier: frontend
+              ports:
+                - port: 6379
+          podSelector:
+            matchLabels:
+              tier: backend
+  remediationAction: enforce

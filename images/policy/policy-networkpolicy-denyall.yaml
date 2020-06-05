@@ -1,0 +1,53 @@
+apiVersion: policy.mcm.ibm.com/v1alpha1
+kind: Policy
+metadata:
+  name: policy-networkpolicy-denyall
+  namespace: default
+  annotations:
+    policy.mcm.ibm.com/standards: 
+    policy.mcm.ibm.com/categories: 
+    policy.mcm.ibm.com/controls: 
+spec:
+  complianceType: musthave
+  remediationAction: enforce
+  disabled: false
+  namespaces:
+    exclude: ["kube-*"]
+    include: ["team2"]
+  object-templates:
+    - complianceType: musthave
+      objectDefinition:
+        kind: NetworkPolicy # deny network request
+        apiVersion: networking.k8s.io/v1
+        metadata:
+          name: deny-from-other-namespaces
+        spec:
+          podSelector:
+            matchLabels:
+          ingress:
+          - from:
+            - podSelector: {} # accept ingress from all pods within this namespace only
+---
+apiVersion: mcm.ibm.com/v1alpha1
+kind: PlacementBinding
+metadata:
+  name: binding-policy-networkpolicy
+  namespace: default
+placementRef:
+  name: placement-policy-networkpolicy
+  kind: PlacementPolicy
+  apiGroup: mcm.ibm.com
+subjects:
+- name: policy-networkpolicy
+  kind: Policy
+  apiGroup: policy.mcm.ibm.com
+---
+apiVersion: mcm.ibm.com/v1alpha1
+kind: PlacementPolicy
+metadata:
+  name: placement-policy-networkpolicy
+  namespace: default
+spec:
+  clusterLabels:
+    matchExpressions:
+      - {key: env, operator: In, values: ["prod"]}
